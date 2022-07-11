@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(./assets/images/universe-1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home main {
+  text-align: center;
+}

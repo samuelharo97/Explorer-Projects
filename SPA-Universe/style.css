@@ -6,24 +6,61 @@
   font-family: 'Roboto', sans-serif;
 }
 
+nav {
+  display: flex;
+  gap: 3.2rem;
+  margin: 72px 0 0 40px;
+}
+
 nav a {
+  font-weight: 400;
+  line-height: 22px;
+  font-size: 22px;
   text-decoration: none;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-image: url(./assets/images/universe-1.png);
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .home {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 199px;
 }
 
 .home main {
   text-align: center;
+}
+
+.home h1 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+}
+
+.home a {
+  text-decoration: none;
+}
+
+button {
+  border: 2px solid hsla(0, 0%, 100%, 1);
+  border-radius: 5px;
+  background-color: transparent;
+  margin-top: 24px;
+  width: 195px;
+  height: 48px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.home a:hover {
+  background-color: hsla(0, 0%, 100%, 1) white;
+  color: hsla(194, 97%, 31%, 1);
 }

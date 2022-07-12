@@ -7,6 +7,7 @@
 }
 
 nav {
+  align-items: center;
   display: flex;
   gap: 3.2rem;
   margin: 72px 0 0 40px;
@@ -24,6 +25,13 @@ body {
   width: 100%;
   background-image: url(./assets/images/universe-1.png);
   background-size: cover;
+}
+
+.main {
+  margin: 113px 0 0 102px;
+  width: 648px;
+  height: 250px;
+  text-align: left;
 }
 
 .home {
@@ -63,4 +71,19 @@ button {
 .home a:hover {
   background-color: hsla(0, 0%, 100%, 1) white;
   color: hsla(194, 97%, 31%, 1);
+}
+
+p {
+  margin-top: 16px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28.8px;
+}
+
+.second {
+  background-image: url(./assets/images/universe02.png);
+}
+
+.third {
+  background-image: url(./assets/images/universe-3.png);
 }

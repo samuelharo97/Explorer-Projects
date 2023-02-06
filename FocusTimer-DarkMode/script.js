@@ -10,15 +10,23 @@ const buttonSoundOn = document.querySelector('.soundOn')
 const buttonSoundOff = document.querySelector('.soundOff')
 const displayMinutes = document.querySelector('.minutes')
 const displaySeconds = document.querySelector('.seconds')
-const buttonRain = document.querySelector('.rain')
+stashconst volRain = document.getElementById('volRain')
+const volFire = document.getElementById('volFire')
+const volNature = document.getElementById('volNature')
+const volStreet = document.getElementById('volStreet')
 const buttonFire = document.querySelector('.fire')
+const buttonRain = document.querySelector('.rain')
 const buttonStreet = document.querySelector('.street')
 const buttonNature = document.querySelector('.nature')
+const fireCard = document.getElementById('fireButton')
+const rainCard = document.getElementById('rainButton')
+const streetCard = document.getElementById('streetButton')
+const natureCard = document.getElementById('natureButton')
 let minutes
 let setMinutes = 25
 let currentTime
 let seconds
-let lastPlayed
+let audio
 let lastCard
 
 const timer = Timer({
@@ -31,51 +39,6 @@ const timer = Timer({
 })
 
 const playAudio = sounds()
-
-buttonRain.addEventListener('click', function () {
-  stopAllAudio()
-  buttonRain.classList.add('enabled')
-  buttonFire.classList.remove('enabled')
-  buttonStreet.classList.remove('enabled')
-  buttonNature.classList.remove('enabled')
-  playAudio.buttonPressAudio.play()
-  playAudio.rainAudio.play()
-  lastPlayed = playAudio.rainAudio
-  lastCard = buttonRain
-})
-buttonFire.addEventListener('click', function () {
-  stopAllAudio()
-  buttonFire.classList.add('enabled')
-  buttonStreet.classList.remove('enabled')
-  buttonNature.classList.remove('enabled')
-  buttonRain.classList.remove('enabled')
-  playAudio.buttonPressAudio.play()
-  playAudio.fireAudio.play()
-  lastPlayed = playAudio.fireAudio
-  lastCard = buttonFire
-})
-buttonStreet.addEventListener('click', function () {
-  stopAllAudio()
-  buttonStreet.classList.add('enabled')
-  buttonFire.classList.remove('enabled')
-  buttonNature.classList.remove('enabled')
-  buttonRain.classList.remove('enabled')
-  playAudio.buttonPressAudio.play()
-  playAudio.streetAudio.play()
-  lastPlayed = playAudio.streetAudio
-  lastCard = buttonStreet
-})
-buttonNature.addEventListener('click', function () {
-  stopAllAudio()
-  buttonNature.classList.add('enabled')
-  buttonStreet.classList.remove('enabled')
-  buttonFire.classList.remove('enabled')
-  buttonRain.classList.remove('enabled')
-  playAudio.buttonPressAudio.play()
-  playAudio.forestAudio.play()
-  lastPlayed = playAudio.forestAudio
-  lastCard = buttonNature
-})
 
 buttonPlay.addEventListener('click', function () {
   buttonPlay.classList.add('hide')
@@ -121,16 +84,106 @@ buttonSoundOn.addEventListener('click', function () {
   buttonSoundOff.classList.remove('hide')
   playAudio.buttonPressAudio.play()
   lastCard.classList.add('enabled')
-  lastPlayed.play() 
+  audio.play()
 })
 
 function stopAllAudio() {
-  playAudio.fireAudio.pause()
-  playAudio.streetAudio.pause()
-  playAudio.rainAudio.pause()
-  playAudio.forestAudio.pause()
-  buttonNature.classList.remove('enabled')
-  buttonStreet.classList.remove('enabled')
-  buttonFire.classList.remove('enabled')
-  buttonRain.classList.remove('enabled')
+  if (audio) {
+    audio.pause()
+  }
+  natureCard.classList.remove('enabled')
+  streetCard.classList.remove('enabled')
+  fireCard.classList.remove('enabled')
+  rainCard.classList.remove('enabled')
 }
+
+buttonRain.addEventListener('click', function () {
+  if (
+    lastCard?.attributes.id.value == 'rainButton' &&
+    lastCard?.attributes.class.value == 'enabled'
+  ) {
+    stopAllAudio()
+  } else {
+    stopAllAudio()
+    rainCard.classList.add('enabled')
+    fireCard.classList.remove('enabled')
+    streetCard.classList.remove('enabled')
+    natureCard.classList.remove('enabled')
+    playAudio.buttonPressAudio.play()
+    audio = playAudio.rainAudio
+    audio.play()
+    lastCard = rainCard
+  }
+})
+buttonFire.addEventListener('click', function () {
+  if (
+    lastCard?.attributes.id.value == 'fireButton' &&
+    lastCard?.attributes.class.value == 'enabled'
+  ) {
+    stopAllAudio()
+  } else {
+    stopAllAudio()
+    fireCard.classList.add('enabled')
+    streetCard.classList.remove('enabled')
+    natureCard.classList.remove('enabled')
+    rainCard.classList.remove('enabled')
+    playAudio.buttonPressAudio.play()
+    audio = playAudio.fireAudio
+    audio.play()
+    lastCard = fireCard
+  }
+})
+buttonStreet.addEventListener('click', function () {
+  if (
+    lastCard?.attributes.id.value == 'streetButton' &&
+    lastCard?.attributes.class.value == 'enabled'
+  ) {
+    stopAllAudio()
+  } else {
+    stopAllAudio()
+    streetCard.classList.add('enabled')
+    fireCard.classList.remove('enabled')
+    buttonNature.classList.remove('enabled')
+    rainCard.classList.remove('enabled')
+    playAudio.buttonPressAudio.play()
+    audio = playAudio.streetAudio
+    audio.play()
+    lastCard = streetCard
+  }
+})
+buttonNature.addEventListener('click', function () {
+  if (
+    lastCard?.attributes.id.value == 'natureButton' &&
+    lastCard?.attributes.class.value == 'enabled'
+  ) {
+    stopAllAudio()
+  } else {
+    stopAllAudio()
+    natureCard.classList.add('enabled')
+    streetCard.classList.remove('enabled')
+    fireCard.classList.remove('enabled')
+    rainCard.classList.remove('enabled')
+    playAudio.buttonPressAudio.play()
+    audio = playAudio.forestAudio
+    audio.play()
+    lastCard = natureCard
+  }
+})
+
+function setVolume(volumeInput) {
+  const value = volumeInput.value / 100
+  audio.volume = value
+}
+
+volFire.addEventListener('input', function () {
+  setVolume(volFire)
+})
+volNature.addEventListener('input', function () {
+  setVolume(volNature)
+})
+volRain.addEventListener('input', function () {
+  setVolume(volRain)
+})
+volStreet.addEventListener('input', function () {
+  setVolume(volStreet)
+})

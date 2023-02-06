@@ -28,8 +28,6 @@ const body = document.body
 const volumeWrapper = document.querySelectorAll('.volume-wrapper')
 const text = document.querySelectorAll('span')
 
-console.log(natureButton.childNodes[1].children[0])
-
 let minutes
 let setMinutes = 25
 let currentTime
@@ -115,8 +113,9 @@ function stopAllAudio() {
 
 buttonRain.addEventListener('click', function () {
   if (
-    lastCard?.attributes.id.value == 'rainButton' &&
-    lastCard?.attributes.class.value == 'enabled'
+    (lastCard?.attributes.id.value == 'rainButton' &&
+      lastCard?.attributes.class.value == 'enabled') ||
+    lastCard?.attributes.class.value == 'dark-card enabled'
   ) {
     stopAllAudio()
   } else {
@@ -133,8 +132,9 @@ buttonRain.addEventListener('click', function () {
 })
 buttonFire.addEventListener('click', function () {
   if (
-    lastCard?.attributes.id.value == 'fireButton' &&
-    lastCard?.attributes.class.value == 'enabled'
+    (lastCard?.attributes.id.value == 'fireButton' &&
+      lastCard?.attributes.class.value == 'enabled') ||
+    lastCard?.attributes.class.value == 'dark-card enabled'
   ) {
     stopAllAudio()
   } else {
@@ -151,8 +151,9 @@ buttonFire.addEventListener('click', function () {
 })
 buttonStreet.addEventListener('click', function () {
   if (
-    lastCard?.attributes.id.value == 'streetButton' &&
-    lastCard?.attributes.class.value == 'enabled'
+    (lastCard?.attributes.id.value == 'streetButton' &&
+      lastCard?.attributes.class.value == 'enabled') ||
+    lastCard?.attributes.class.value == 'dark-card enabled'
   ) {
     stopAllAudio()
   } else {
@@ -169,8 +170,9 @@ buttonStreet.addEventListener('click', function () {
 })
 buttonNature.addEventListener('click', function () {
   if (
-    lastCard?.attributes.id.value == 'natureButton' &&
-    lastCard?.attributes.class.value == 'enabled'
+    (lastCard?.attributes.id.value == 'natureButton' &&
+      lastCard?.attributes.class.value == 'enabled') ||
+    lastCard?.attributes.class.value == 'dark-card enabled'
   ) {
     stopAllAudio()
   } else {
@@ -216,7 +218,6 @@ function toggleDarkMode() {
     path.classList.toggle('dark-buttons')
   )
   natureButton.childNodes[1].children[0].classList.toggle('svg-dark')
-  console.log(natureButton.childNodes[1].children[0], 'dark')
   rainButton.childNodes[1].children[0].classList.toggle('svg-dark')
   fireButton.childNodes[1].children[0].classList.toggle('svg-dark')
   streetButton.childNodes[1].children[0].classList.toggle('svg-dark')

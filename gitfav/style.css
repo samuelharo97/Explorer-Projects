@@ -74,16 +74,20 @@ header h1 {
 }
 
 .search button {
-  background-color: #06181c;
-  border-radius: 0 0.4rem 0.4rem 0;
+  background-color: #065e7c;
+  border-radius: 0.4rem;
   height: 3.2rem;
   border: none;
+  margin: 0 0.5rem;
   padding: 0 1rem;
+  color: #ffffff;
 
   cursor: pointer;
 }
 
 .search button:hover {
+  color: #065e7c;
+  background-color: #ffffff;
   filter: brightness(1.1);
 }
 

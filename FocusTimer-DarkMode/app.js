@@ -1,13 +1,6 @@
 import {
   displayMinutes,
   displaySeconds,
-  buttonPlay,
-  buttonPause,
-  buttonStop,
-  buttonIncreaseTime,
-  buttonDecreaseTime,
-  buttonSoundOn,
-  buttonSoundOff
 } from './js/elements.js'
 import { Timer } from './js/timer.js'
 import sounds from './js/sounds.js'

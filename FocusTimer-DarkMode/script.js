@@ -1,27 +1,35 @@
 import { Timer } from './timer.js'
 import sounds from './sounds.js'
 
-const buttonPlay = document.querySelector('.play')
-const buttonPause = document.querySelector('.pause')
-const buttonStop = document.querySelector('.stop')
-const buttonIncreaseTime = document.querySelector('.increaseTime')
-const buttonDecreaseTime = document.querySelector('.decreaseTime')
-const buttonSoundOn = document.querySelector('.soundOn')
-const buttonSoundOff = document.querySelector('.soundOff')
-const displayMinutes = document.querySelector('.minutes')
-const displaySeconds = document.querySelector('.seconds')
-stashconst volRain = document.getElementById('volRain')
+const buttonPlay = document.getElementById('play')
+const buttonPause = document.getElementById('pause')
+const buttonStop = document.getElementById('stop')
+const buttonIncreaseTime = document.getElementById('increaseTime')
+const buttonDecreaseTime = document.getElementById('decreaseTime')
+const buttonSoundOn = document.getElementById('soundOn')
+const buttonSoundOff = document.getElementById('soundOff')
+const displayMinutes = document.getElementById('minutes')
+const displaySeconds = document.getElementById('seconds')
+const volRain = document.getElementById('volRain')
 const volFire = document.getElementById('volFire')
 const volNature = document.getElementById('volNature')
 const volStreet = document.getElementById('volStreet')
-const buttonFire = document.querySelector('.fire')
-const buttonRain = document.querySelector('.rain')
-const buttonStreet = document.querySelector('.street')
-const buttonNature = document.querySelector('.nature')
+const buttonFire = document.getElementById('fire')
+const buttonRain = document.getElementById('rain')
+const buttonStreet = document.getElementById('street')
+const buttonNature = document.getElementById('nature')
+const lightMode = document.getElementById('light-mode')
+const darkMode = document.getElementById('dark-mode')
 const fireCard = document.getElementById('fireButton')
 const rainCard = document.getElementById('rainButton')
 const streetCard = document.getElementById('streetButton')
 const natureCard = document.getElementById('natureButton')
+const body = document.body
+const volumeWrapper = document.querySelectorAll('.volume-wrapper')
+const text = document.querySelectorAll('span')
+
+console.log(natureButton.childNodes[1].children[0])
+
 let minutes
 let setMinutes = 25
 let currentTime
@@ -36,6 +44,14 @@ const timer = Timer({
   seconds,
   setMinutes,
   currentTime
+})
+
+lightMode.addEventListener('click', () => {
+  toggleDarkMode()
+})
+
+darkMode.addEventListener('click', () => {
+  toggleDarkMode()
 })
 
 const playAudio = sounds()
@@ -169,6 +185,42 @@ buttonNature.addEventListener('click', function () {
     lastCard = natureCard
   }
 })
+
+function toggleDarkMode() {
+  lightMode.classList.toggle('hide')
+  darkMode.classList.toggle('hide')
+  body.classList.toggle('body-dark-bg')
+  volumeWrapper.forEach(volume => volume.classList.toggle('dark-wrapper'))
+  volRain.style.backgroundColor = 'var(--active-card-fill-dark)'
+  volFire.style.backgroundColor = 'var(--active-card-fill-dark)'
+  volNature.style.backgroundColor = 'var(--active-card-fill-dark)'
+  volStreet.style.backgroundColor = 'var(--active-card-fill-dark)'
+  fireCard.classList.toggle('dark-card')
+  rainCard.classList.toggle('dark-card')
+  streetCard.classList.toggle('dark-card')
+  natureCard.classList.toggle('dark-card')
+  text.forEach(text => text.classList.toggle('dark-text'))
+  buttonPlay.childNodes[1].childNodes[1].classList.toggle('dark-buttons')
+  buttonPause.childNodes[1].childNodes[1].classList.toggle('dark-buttons')
+  buttonStop.childNodes[1].childNodes[1].classList.toggle('dark-buttons')
+  buttonIncreaseTime.childNodes[1].childNodes[1].classList.toggle(
+    'dark-buttons'
+  )
+  buttonDecreaseTime.childNodes[1].childNodes[1].classList.toggle(
+    'dark-buttons'
+  )
+  new Set(buttonSoundOff.childNodes[1].children).forEach(path =>
+    path.classList.toggle('dark-buttons')
+  )
+  new Set(buttonSoundOn.childNodes[1].children).forEach(path =>
+    path.classList.toggle('dark-buttons')
+  )
+  natureButton.childNodes[1].children[0].classList.toggle('svg-dark')
+  console.log(natureButton.childNodes[1].children[0], 'dark')
+  rainButton.childNodes[1].children[0].classList.toggle('svg-dark')
+  fireButton.childNodes[1].children[0].classList.toggle('svg-dark')
+  streetButton.childNodes[1].children[0].classList.toggle('svg-dark')
+}
 
 function setVolume(volumeInput) {
   const value = volumeInput.value / 100

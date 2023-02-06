@@ -7,14 +7,20 @@
 
 :root {
   font-size: 62, 5%;
-  --active-card-bg: #02799d; /*  */
-  --active-card-fill: #ffffff; /*  */
-  --inactive-card-bg: #e1e1e6; /*  */
-  --inactive-card-fill: #323238; /*  */
+  --background: #ffffff;
+  --background-dark: #000000;
+  --active-card-bg: #02799d;
+  --active-card-fill: #ffffff;
+  --inactive-card-bg: #e1e1e6;
+  --inactive-card-fill: #323238;
+  --active-card-bg-dark: #0a3442;
+  --active-card-fill-dark: #ffffff;
+  --inactive-card-bg-dark: #29292e;
+  --inactive-card-fill-dark: #c4c4cc;
 }
 
 body {
-  min-height: 100vh;
+  background-color: var(--background);
 }
 
 .grid-cards {
@@ -54,16 +60,11 @@ input[type='range'] {
   margin-bottom: 5px;
   width: 100px;
   height: 7px;
-  /*   background: var(#ffffff);
- */
   border-radius: 5px;
-  /*   background-image: linear-gradient(#02799d, #02799d);
- */
   background-size: 50% 100%;
   background-repeat: no-repeat;
-  
+  background: var(--inactive-card-bg-dark);
 }
-
 
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -74,7 +75,6 @@ input[type='range']::-webkit-slider-thumb {
   cursor: ew-resize;
   box-shadow: 0 0 2px 0 #555;
   transition: background 0.3s ease-in-out;
-  
 }
 
 input[type='range']::-webkit-slider-runnable-track {
@@ -82,7 +82,6 @@ input[type='range']::-webkit-slider-runnable-track {
   box-shadow: none;
   border: none;
   background: transparent;
-
 }
 
 button {
@@ -109,7 +108,7 @@ button {
 
 button .enabled,
 .volume-wrapper .enabled {
-  background-color: #02799d;
+  background-color: var(--active-card-bg);
   border-radius: 24px;
 }
 
@@ -128,7 +127,7 @@ button .enabled,
 
 span {
   font-family: 'Roboto', sans-serif;
-  color: #323238;
+  color: var(--inactive-card-fill);
   font-size: 7rem;
   line-height: 14.8rem;
   font-weight: 500;
@@ -200,3 +199,53 @@ footer {
     transform: scale(100%);
   }
 }
+
+/* dark mode starts */
+
+.body-dark-bg {
+  background-color: var(--background-dark);
+}
+
+.dark-text {
+  color: var(--inactive-card-fill-dark);
+}
+
+.dark-buttons {
+  fill: var(--inactive-card-fill-dark);
+}
+
+.dark-card {
+  background-color: var(--inactive-card-bg-dark);
+  border-radius: 24px;
+}
+
+.dark-volume {
+  background-color: var(--inactive-card-bg-dark);
+}
+
+.dark-input input[type='range'] {
+  background: var(--active-card-fill-dark);
+}
+
+.dark-wrapper {
+  background-color: var(--inactive-card-bg-dark);
+}
+
+.dark-card .enabled {
+  background-color: var(--active-card-bg-dark);
+  border-radius: 24px;
+}
+
+.svg-dark {
+  fill: var(--inactive-card-bg-dark);
+}
+
+button.enabled path.svg-dark {
+  fill: var(--active-card-bg-dark);
+}
+
+button.dark-card.enabled {
+  background-color: var(--active-card-bg-dark);
+}
+
+/* dark mode ends */

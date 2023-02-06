@@ -3,9 +3,7 @@ export default function sounds() {
   forestAudio.loop = true
   const fireAudio = new Audio('audio-files/Lareira.wav')
   fireAudio.loop = true
-  const streetAudio = new Audio(
-    'https://github.com/Paru369/focus-timer/blob/main/sounds/Cafeteria.wav?raw=true'
-  )
+  const streetAudio = new Audio('audio-files/Street.wav')
   streetAudio.loop = true
   const rainAudio = new Audio('audio-files/Chuva.wav')
   rainAudio.loop = true

@@ -1,7 +1,7 @@
-import { displayMinutes, displaySeconds } from './elements.js'
-import { Timer } from './timer.js'
-import sounds from './sounds.js'
-import { Cards, Controls, ToggleDarkMode } from './events.js'
+import { displayMinutes, displaySeconds } from './js/elements.js'
+import { Timer } from './js/timer.js'
+import sounds from './js/sounds.js'
+import { Cards, Controls, ToggleDarkMode } from './js/events.js'
 
 let minutes
 let setMinutes = 25

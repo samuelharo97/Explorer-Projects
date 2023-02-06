@@ -1,4 +1,14 @@
-import { displayMinutes, displaySeconds } from './js/elements.js'
+import {
+  displayMinutes,
+  displaySeconds,
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonIncreaseTime,
+  buttonDecreaseTime,
+  buttonSoundOn,
+  buttonSoundOff
+} from './js/elements.js'
 import { Timer } from './js/timer.js'
 import sounds from './js/sounds.js'
 import { Cards, Controls, ToggleDarkMode } from './js/events.js'
@@ -7,8 +17,6 @@ let minutes
 let setMinutes = 25
 let currentTime
 let seconds
-let audio
-let lastCard
 
 const timer = Timer({
   displayMinutes,
@@ -18,7 +26,8 @@ const timer = Timer({
   setMinutes,
   currentTime
 })
+
 const playAudio = sounds()
 const toggleDarkMode = ToggleDarkMode()
-const cards = Cards({ lastCard, audio, playAudio })
+const cards = Cards({ playAudio })
 const controls = Controls({ timer, playAudio })

@@ -21,7 +21,10 @@ import {
   text
 } from './elements.js'
 
-export function Cards({ lastCard, audio, playAudio }) {
+let audio
+let lastCard
+
+export function Cards({ playAudio }) {
   buttonRain.addEventListener('click', function () {
     if (
       (lastCard?.attributes.id.value == 'rainButton' &&
@@ -39,7 +42,7 @@ export function Cards({ lastCard, audio, playAudio }) {
       playAudio.buttonPressAudio.play()
       audio = playAudio.rainAudio
       audio.play()
-      lastCard = rainCard
+      return (lastCard = rainCard)
     }
   })
   buttonFire.addEventListener('click', function () {
@@ -59,7 +62,7 @@ export function Cards({ lastCard, audio, playAudio }) {
       playAudio.buttonPressAudio.play()
       audio = playAudio.fireAudio
       audio.play()
-      lastCard = fireCard
+      return (lastCard = fireCard)
     }
   })
   buttonStreet.addEventListener('click', function () {
@@ -79,7 +82,7 @@ export function Cards({ lastCard, audio, playAudio }) {
       playAudio.buttonPressAudio.play()
       audio = playAudio.streetAudio
       audio.play()
-      lastCard = streetCard
+      return (lastCard = streetCard)
     }
   })
   buttonNature.addEventListener('click', function () {
@@ -99,7 +102,7 @@ export function Cards({ lastCard, audio, playAudio }) {
       playAudio.buttonPressAudio.play()
       audio = playAudio.forestAudio
       audio.play()
-      lastCard = natureCard
+      return (lastCard = natureCard)
     }
   })
 
@@ -156,10 +159,10 @@ export function Controls({ timer, playAudio }) {
   })
 
   buttonSoundOff.addEventListener('click', function () {
-    stopAllAudio(audio)
+    playAudio.buttonPressAudio.play()
     buttonSoundOff.classList.add('hide')
     buttonSoundOn.classList.remove('hide')
-    playAudio.buttonPressAudio.play()
+    stopAllAudio(audio)
   })
 
   buttonSoundOn.addEventListener('click', function () {
@@ -217,6 +220,7 @@ export function ToggleDarkMode() {
 }
 
 function stopAllAudio(audio) {
+  console.log(audio)
   if (audio) {
     audio.pause()
   }

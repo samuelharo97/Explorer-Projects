@@ -1,18 +1,23 @@
-import { InputText, Button, LinkText, LandingLogo } from '@components';
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { LandingLogo, InputText, Button, LinkText } from '@components';
+import { AiOutlineMail, AiOutlineLock, AiOutlineUser, AiOutlineArrowLeft } from 'react-icons/ai';
 
-export const SignIn = () => {
+export const SignUp = () => {
   return (
     <div className="flex h-screen items-center self-center">
       <section className="md:flex-col md:w-4/12 my-64 mx-auto md:self-center">
-        <LandingLogo welcomeText='Faça seu login' />
+        <LandingLogo welcomeText="Crie sua conta" />
         <div className="flex-col justify-center w-fit">
+          <InputText placeholder="Nome" icon={AiOutlineUser} inputType="text"></InputText>
+
           <InputText placeholder="E-mail" icon={AiOutlineMail} inputType="email"></InputText>
 
           <InputText placeholder="Senha" inputType="password" icon={AiOutlineLock}></InputText>
 
           <Button text="Entrar" onClick={() => console.log('clicked')} color="bg-rose-400"></Button>
-          <LinkText text="Criar conta" />
+          <div className="flex justify-center items-center">
+            <AiOutlineArrowLeft className="text-rose-400 h-10 p-2 rounded-lg w-max outline-none mb-5 hover:cursor-pointer"></AiOutlineArrowLeft>
+            <LinkText text="Voltar para o login" />
+          </div>
         </div>
       </section>
       <section className="h-screen w-6/12 hidden md:w-7/12 md:ml-10 lg:block">

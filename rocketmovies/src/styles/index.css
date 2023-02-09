@@ -49,6 +49,21 @@ h1 {
   padding: 4 5 6 7;
 }
 
+.truncate-text {
+  height: 4.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: no-wrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.movie-box {
+  background-color: #352126;
+  max-width: 95%;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

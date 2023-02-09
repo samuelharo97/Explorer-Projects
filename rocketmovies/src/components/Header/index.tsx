@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { Stars } from '@components';
+import { useState } from 'react';
 
 export const Header = () => {
   return (
     <header
       id="header"
-      className=" h-28 flex items-center justify-between p-5 bg-gray-900 text-white border-b border-gray-600"
+      className=" h-28 mb-7 flex items-center justify-between p-5 bg-gray-900 text-white border-b border-gray-600"
     >
       <div className="flex items-center">
         <h1 className="text-rose-400 ml-4 text-2xl font-semibold">rocketm0vies</h1>
       </div>
-      
-        <div className="flex items-center w-6/12">
-          <input
-            type="text"
-            placeholder="Pesquisar por título"
-            className="rounded w-full h-14 p-6 mr-4"
-          />
-        </div>
 
+      <div className="flex items-center w-6/12">
+        <input
+          type="text"
+          placeholder="Pesquisar por título"
+          className="rounded w-full h-14 p-6 mr-4"
+        />
+      </div>
 
       <div className="rounded-full p-2 bottom-0 right-0 mt-2 mr-4 flex">
         <div className="flex-col mr-4">

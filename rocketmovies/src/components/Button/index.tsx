@@ -15,3 +15,6 @@ export const Button: React.FC<Props> = ({ onClick, text, color, width = '80' }) 
     </button>
   );
 };
+interface Props {
+  initialRating?: number;
+}

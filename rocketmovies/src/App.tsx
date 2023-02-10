@@ -1,7 +1,12 @@
-import { SignUp } from '@pages';
-
-import './styles/index.css';
 import { Header, MovieCard } from '@components';
+import './styles/index.css';
+
+const user = {
+  name: 'Samuel Haro',
+  avatar: '',
+  date: new Date().toLocaleDateString('pt-BR'),
+  time: new Date().toLocaleTimeString('pt-BR').slice(0, 5),
+};
 
 const data = {
   title: 'Interstellar',

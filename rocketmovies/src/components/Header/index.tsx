@@ -1,11 +1,8 @@
-import { Stars } from '@components';
-import { useState } from 'react';
-
 export const Header = () => {
   return (
     <header
       id="header"
-      className=" h-28 mb-7 flex items-center justify-between p-5 bg-gray-900 text-white border-b border-gray-600"
+      className=" h-28 mb-7 flex items-center justify-between py-5 px-28 bg-gray-900 text-white border-b border-gray-600"
     >
       <div className="flex items-center">
         <h1 className="text-rose-400 ml-4 text-2xl font-semibold">rocketm0vies</h1>

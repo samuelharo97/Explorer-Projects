@@ -1,5 +1,6 @@
-import { Header, MovieCard } from '@components';
+import { RouterProvider } from 'react-router-dom';
 import './styles/index.css';
+import { AuthRoutes, AppRoutes } from '@router';
 
 const user = {
   name: 'Samuel Haro',
@@ -17,12 +18,9 @@ const data = {
 };
 
 function App() {
-  return (
-    <div className="App">
-      <Header></Header>
-      <MovieCard data={data}></MovieCard>
-    </div>
-  );
+  const isAuth = true;
+
+  return <RouterProvider router={isAuth ? AppRoutes : AuthRoutes} />;
 }
 
 export default App;

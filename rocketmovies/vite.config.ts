@@ -9,6 +9,7 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components/index.ts'),
       '@types': path.resolve(__dirname, './src/types/index.ts'),
       '@router': path.resolve(__dirname, './src/router/index.ts'),
+      '@context': path.resolve(__dirname, './src/context/index.ts'),
       '@pages': path.resolve(__dirname, './src/pages/index.ts'),
     },
   },

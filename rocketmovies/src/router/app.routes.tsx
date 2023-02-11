@@ -12,6 +12,18 @@ const user = {
 export const AppRoutes = createBrowserRouter([
   {
     path: '/',
-    element: <Profile user={user} />,
+    element: <Profile user={user} />, 
+  },
+  {
+    path: '/profile',
+    element: <Profile user={user} />, 
+  },
+  {
+    path: '/movie/:id', //details
+    element: <Profile user={user} />, 
+  },
+  {
+    path: '/new', // create movie
+    element: <Profile user={user} />, 
   },
 ]);

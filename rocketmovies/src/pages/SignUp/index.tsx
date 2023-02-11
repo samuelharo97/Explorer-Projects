@@ -1,7 +1,10 @@
 import { LandingLogo, InputText, Button, LinkText } from '@components';
+import { AuthContext } from '@context';
+import { useContext } from 'react';
 import { AiOutlineMail, AiOutlineLock, AiOutlineUser, AiOutlineArrowLeft } from 'react-icons/ai';
 
 export const SignUp = () => {
+
   return (
     <div className="flex h-screen items-center self-center">
       <section className="md:flex-col md:w-4/12 my-64 mx-auto md:self-center">
@@ -13,10 +16,10 @@ export const SignUp = () => {
 
           <InputText placeholder="Senha" inputType="password" icon={AiOutlineLock}></InputText>
 
-          <Button text="Entrar" onClick={() => console.log('clicked')} color="bg-rose-400"></Button>
+          <Button text="Cadastrar" onClick={() => console.log('registered!!!')} color="bg-rose-400"></Button>
           <div className="flex justify-center items-center">
             <AiOutlineArrowLeft className="text-rose-400 h-10 p-2 rounded-lg w-max outline-none mb-5 hover:cursor-pointer"></AiOutlineArrowLeft>
-            <LinkText text="Voltar para o login" />
+            <LinkText goTo={'/'} text="Voltar para o login" />
           </div>
         </div>
       </section>

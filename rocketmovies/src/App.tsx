@@ -1,6 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
 import './styles/index.css';
 import { AuthRoutes, AppRoutes } from '@router';
+import { useState } from 'react';
+import { AuthContext, AuthContextType } from '@context';
 
 const user = {
   name: 'Samuel Haro',
@@ -18,9 +20,13 @@ const data = {
 };
 
 function App() {
-  const isAuth = true;
+  const [auth, setAuth] = useState<AuthContextType>(false);
 
-  return <RouterProvider router={isAuth ? AppRoutes : AuthRoutes} />;
+  return (
+    <AuthContext.Provider value={[auth, setAuth]}>
+      <RouterProvider router={auth ? AppRoutes : AuthRoutes} />
+    </AuthContext.Provider>
+  );
 }
 
 export default App;

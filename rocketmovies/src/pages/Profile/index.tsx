@@ -9,16 +9,16 @@ import {
 } from 'react-icons/ai';
 
 export const Profile: React.FC<UserProps> = ({ user }) => {
-  const submit = async (e: { preventDefault: () => void; }) => {
+  const submit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    return console.log('submited')
+    return console.log('submited');
   };
   return (
     <>
       <header className="profile-header flex items-center justify-between h-36 px-36 py-20 mb-32">
         <div className="flex justify-start items-center pt-3.5">
           <AiOutlineArrowLeft className="text-rose-400 h-10 pt-1 w-max outline-none mb-5 hover:cursor-pointer"></AiOutlineArrowLeft>
-          <LinkText text="Voltar" />
+          <LinkText goTo={'/'} text="Voltar" />
         </div>
         <div>
           <img className="h-48 w-48 mt-48 rounded-full" src={user.avatar} alt="user's avatar" />
@@ -26,11 +26,11 @@ export const Profile: React.FC<UserProps> = ({ user }) => {
             <AiOutlineCamera fill="black" className=" w-5 h-5"></AiOutlineCamera>
           </div>
         </div>
-        <div className='w-24 mr-2'></div>
+        <div className="w-24 mr-2"></div>
       </header>
       {/* flex-col e gap-6 não funcionaram na className da section */}
       <form onSubmit={submit} className="profile-form flex items-center">
-        <section>
+        <section className="profile-form">
           <div>
             <InputText icon={AiOutlineUser} dValue={user.name}></InputText>
             <InputText icon={AiOutlineMail} dValue={user.email}></InputText>

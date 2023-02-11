@@ -3,7 +3,7 @@ import { MovieProps } from '@types';
 
 export const MovieCard: React.FC<MovieProps> = ({ data }) => {
   return (
-    <article className="movie-box flex-col p-8 max-h-64 gap-3 rounded-2xl">
+    <article className="movie-box flex-col px-8 py-4 max-h-64 gap-3 rounded-2xl">
       <h4 className="text-2xl font-bold">{data.title}</h4>
       <Stars initialRating={data.rating} />
       <div className="truncate-text h-40">

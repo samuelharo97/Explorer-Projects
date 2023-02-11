@@ -9,9 +9,9 @@ export const MovieDetails: React.FC<Props> = ({ data, user }) => {
     <>
       <div className="flex justify-center items-center">
         <AiOutlineArrowLeft className="text-rose-400 h-10 p-2 rounded-lg w-max outline-none mb-5 hover:cursor-pointer" />
-        <LinkText text="Voltar para o login" />
+        <LinkText goTo={'/'} text="Voltar" />
       </div>
-      <div className="overflow-auto scrollbar-rose-400 bg-transparent">
+      <div className="overflow-scroll scrollbar-rose-400 bg-transparent">
         <div className="flex">
           <h3>{data.title}</h3>
           <Stars initialRating={data.rating} />

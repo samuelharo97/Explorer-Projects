@@ -1,8 +1,13 @@
+import { AuthContext } from '@context';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 export const Header = () => {
+  const [auth, setAuth] = useContext(AuthContext);
   return (
     <header
       id="header"
-      className=" h-28 mb-7 flex items-center justify-between py-5 px-28 bg-gray-900 text-white border-b border-gray-600"
+      className=" h-28 mb-5 flex items-center justify-between py-5 px-28 bg-gray-900 text-white border-b border-gray-600"
     >
       <div className="flex items-center">
         <h1 className="text-rose-400 ml-4 text-2xl font-semibold">rocketm0vies</h1>
@@ -20,16 +25,22 @@ export const Header = () => {
         <div className="flex-col mr-4">
           <p className="text-sm font-medium mb-3">Samuel Haro</p>
           <div className="text-right">
-            <a href="#" className="block text-xs font-medium text-rose-400">
+            <a
+              onClick={() => setAuth(false)}
+              href="#"
+              className="block text-xs font-medium text-rose-400"
+            >
               Logout
             </a>
           </div>
         </div>
-        <img
-          src="https://avatars.githubusercontent.com/u/103484037?v=4"
-          alt="user-avatar"
-          className="h-16 w-16 rounded-full"
-        />
+        <Link to={'/profile'}>
+          <img
+            src="https://avatars.githubusercontent.com/u/103484037?v=4"
+            alt="user-avatar"
+            className="h-16 w-16 rounded-full"
+          />
+        </Link>
       </div>
     </header>
   );

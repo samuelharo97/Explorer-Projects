@@ -1,5 +1,5 @@
 interface Props {
-  onClick: () => void;
+  onClick?: () => any;
   text: string;
   color?: string;
   width?: string;

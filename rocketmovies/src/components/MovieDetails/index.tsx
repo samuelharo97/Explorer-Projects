@@ -1,15 +1,6 @@
 import { LinkText, Stars } from '@components';
-import { MovieProps } from '@types';
+import { MovieProps, UserProps } from '@types';
 import { AiOutlineArrowLeft, AiOutlineClockCircle } from 'react-icons/ai';
-
-interface UserProps {
-  user: {
-    name: string;
-    avatar: string;
-    date: Date;
-    time: Date;
-  };
-}
 
 type Props = MovieProps & UserProps;
 

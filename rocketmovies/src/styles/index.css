@@ -59,9 +59,19 @@ h1 {
   -webkit-box-orient: vertical;
 }
 
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .movie-box {
   background-color: #2c2224;
   max-width: 95%;
+}
+
+.profile-header {
+  background-color: #2c2224;
 }
 
 button {

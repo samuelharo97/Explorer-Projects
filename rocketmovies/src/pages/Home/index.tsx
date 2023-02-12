@@ -19,25 +19,41 @@ export const Home = () => {
           <h3 className="text-3xl font-medium">Meus filmes</h3>
           <Link
             className="flex w-52 h-12 text-black bg-rose-400 rounded-lg items-center justify-center gap-2 hover:text-gray-800 hover:bg-rose-300"
-            to={'/movies/new'}
+            to={'/new'}
           >
             <AiOutlinePlus className="h-6 w-6" />
             Adicionar filme
           </Link>
         </div>
-        <section className="scrollbar flex flex-col justify-center items-center gap-6 overflow-hidden overflow-y-scroll h-full">
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-          <MovieCard data={data}></MovieCard>
-        </section>
+        <ul className="scrollbar flex flex-col justify-start align-middle gap-6 overflow-hidden overflow-y-scroll h-full">
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+          <li>
+            <MovieCard data={data}></MovieCard>
+          </li>
+        </ul>
       </main>
     </>
   );

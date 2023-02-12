@@ -22,13 +22,13 @@ export const Header = () => {
       </div>
 
       <div className="rounded-full p-2 bottom-0 right-0 mt-2 mr-4 flex">
-        <div className="flex-col mr-4">
+        <div className="flex flex-col justify-center mr-4">
           <p className="text-sm font-medium mb-3">Samuel Haro</p>
           <div className="text-right">
             <a
               onClick={() => setAuth(false)}
               href="#"
-              className="block text-xs font-medium text-rose-400"
+              className="block text-xs font-medium text-gray-400 hover:text-rose-300"
             >
               Logout
             </a>

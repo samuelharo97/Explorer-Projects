@@ -1,4 +1,4 @@
-import { Home, Profile } from '@pages';
+import { CreateMovie, Home, Profile, Details } from '@pages';
 import { createBrowserRouter } from 'react-router-dom';
 
 const user = {
@@ -19,16 +19,11 @@ export const AppRoutes = createBrowserRouter([
     element: <Profile user={user} />,
   },
   {
-    path: '/movies', //details
-    children: [
-      {
-        path: 'movies/new', // create movie
-        element: <Profile user={user} />,
-      },
-      {
-        path: 'movies/:id', // useParams
-        element: <Profile user={user} />,
-      },
-    ],
+    path: '/new',
+    element: <CreateMovie />,
+  },
+  {
+    path: '/movies/:id', //details
+    element: <Details />,
   },
 ]);

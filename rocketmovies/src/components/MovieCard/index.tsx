@@ -12,7 +12,7 @@ export const MovieCard: React.FC<MovieProps> = ({ data }) => {
   return (
     <article className="movie-box flex-col px-8 py-8 max-h-64 gap-3 rounded-2xl">
       <h4 className="text-2xl font-bold">{data.title}</h4>
-      <Stars initialRating={data.rating} />
+      <Stars size={'xl'} initialRating={data.rating} />
       <div className="truncate-text h-40">
         <p className="text-neutral-500 hover:cursor-pointer" onClick={() => handleNavigate()}>
           {data.content}

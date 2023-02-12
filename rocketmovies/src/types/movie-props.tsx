@@ -1,6 +1,6 @@
 export interface MovieProps {
   data: {
-    id?: string;
+    id?: number | string;
     title: string;
     rating: number;
     content: string;

@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        Int       @id(map: "PK_a3ffb1c0c8416b9fc6f907b7433") @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @default(now()) @db.Timestamp(6)
+  deletedAt DateTime? @db.Timestamp(6)
+  name      String    @db.VarChar(100)
+  email     String    @unique(map: "UQ_97672ac88f789774dd47f7c8be3") @db.VarChar(50)
+  salt      String    @db.VarChar
+  active    Boolean   @default(false)
+  password  String    @db.VarChar
+  city_id   Int?
+  cities    cities?   @relation(fields: [city_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_03934bca2709003c5f08fd436d2")
+}
+
+model aws_usage_pricing {
+  id             Int      @id @default(autoincrement())
+  service_name   String   @db.VarChar(255)
+  usage          Float
+  price          Float
+  billing_period DateTime @db.Date
+}
+
+model cities {
+  id        Int       @id(map: "PK_4762ffb6e5d198cfec5606bc11e") @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @default(now()) @db.Timestamp(6)
+  deletedAt DateTime? @db.Timestamp(6)
+  name      String    @db.VarChar(100)
+  state_id  Int
+  states    states    @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_1229b56aa12cae674b824fccd13")
+  users     users[]
+}
+
+model countries {
+  id        Int       @id(map: "PK_b2d7006793e8697ab3ae2deff18") @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @default(now()) @db.Timestamp(6)
+  deletedAt DateTime? @db.Timestamp(6)
+  name      String    @unique(map: "UQ_fa1376321185575cf2226b1491d") @db.VarChar(100)
+  language  String    @db.VarChar(100)
+  states    states[]
+}
+
+model migrations {
+  id        Int    @id(map: "PK_8c82d7f526340ab734260ea46be") @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar
+}
+
+model states {
+  id         Int       @id(map: "PK_09ab30ca0975c02656483265f4f") @default(autoincrement())
+  createdAt  DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt  DateTime  @default(now()) @db.Timestamp(6)
+  deletedAt  DateTime? @db.Timestamp(6)
+  name       String    @unique(map: "UQ_fe52f02449eaf27be2b2cb7acda") @db.VarChar(100)
+  initials   String    @unique(map: "UQ_edb1ecdd81ccd1462789350aaa6") @db.VarChar(2)
+  country_id Int
+  cities     cities[]
+  countries  countries @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_f3bbd0bc19bb6d8a887add08461")
+}

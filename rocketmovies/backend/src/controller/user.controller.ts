@@ -1,25 +1,34 @@
 import { Request, Response } from 'express';
-import * as bcrypt from 'bcrypt';
-import { prisma } from '../database/prismaClient';
+import { UserService } from '../service/user.service';
 
 export class User {
-  async create(request: Request, response: Response) {
-    const { name, email, avatar, password } = request.body;
+  async create(request: Request, response: Response): Promise<Response> {
+    try {
+      const userService = new UserService();
 
-    const salt = await bcrypt.genSalt(12);
+      const newUser = await userService.createUser(request.body);
 
-    const hash = await bcrypt.hash(password, salt);
+      return response.status(201).json(newUser);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: 'Internal Server Error', status: 500 });
+    }
+  }
 
-    const user = await prisma.users.create({
-      data: {
-        name,
-        email,
-        password: hash,
-        avatar,
-        salt
-      }
-    });
+  async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const userService = new UserService();
 
-    return response.json(user);
+      await userService.destroy(request.params.id);
+
+      return response
+        .status(200)
+        .json({ message: 'deleted count: 1', success: true });
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: 'Internal Server Error', status: 500 });
+    }
   }
 }

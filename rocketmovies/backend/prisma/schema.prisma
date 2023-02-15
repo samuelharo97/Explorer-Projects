@@ -7,8 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  user_id   String    @id() @default(uuid()) @map("id")
+model User {
+  id_user   String    @id() @default(uuid())
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
   deletedAt DateTime? @db.Timestamp(6)
@@ -17,30 +17,33 @@ model users {
   avatar    String    @db.VarChar
   password  String    @db.VarChar
   salt      String    @db.VarChar
-  movie     movies[]
-  tag       tags[]
+  movie     Movie[]
+  tag       Tag[]
 
-  @@map("rocket_users")
+  @@map("rm_user")
 }
 
-model movies {
-  movie_id    String   @id @default(uuid())
+model Movie {
+  id_movie    String   @id @default(uuid())
   title       String
   description String
   rating      Int
-  user        users    @relation(fields: [movie_id], references: [user_id])
+  user        String
+  user_id     User     @relation(fields: [user], references: [id_user])
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updatedAt   DateTime @default(now()) @db.Timestamp(6)
-  tag         tags[]
+  tags        Tag[]
 
-  @@map("rocket_movies")
+  @@map("rm_movie")
 }
 
-model tags {
-  tags_id String @id @default(uuid())
-  note_id movies @relation(fields: [tags_id], references: [movie_id], map: "movies_tags_fk")
-  user_id users  @relation(fields: [tags_id], references: [user_id], map: "user_tags_fk")
+model Tag {
+  id_tags String @id @default(uuid())
+  movie   String
+  user    String
+  note_id Movie  @relation(fields: [movie], references: [id_movie])
+  user_id User   @relation(fields: [user], references: [id_user])
   name    String
 
-  @@map("rocket_tags")
+  @@map("rm_tag")
 }

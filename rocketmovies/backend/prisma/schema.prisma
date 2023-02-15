@@ -8,7 +8,7 @@ datasource db {
 }
 
 model users {
-  id        String       @id() @default(uuid())
+  user_id   String    @id() @default(uuid()) @map("id")
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
   deletedAt DateTime? @db.Timestamp(6)
@@ -17,8 +17,30 @@ model users {
   avatar    String    @db.VarChar
   password  String    @db.VarChar
   salt      String    @db.VarChar
+  movie     movies[]
+  tag       tags[]
+
   @@map("rocket_users")
 }
 
+model movies {
+  movie_id    String   @id @default(uuid())
+  title       String
+  description String
+  rating      Int
+  user        users    @relation(fields: [movie_id], references: [user_id])
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime @default(now()) @db.Timestamp(6)
+  tag         tags[]
 
+  @@map("rocket_movies")
+}
 
+model tags {
+  tags_id String @id @default(uuid())
+  note_id movies @relation(fields: [tags_id], references: [movie_id], map: "movies_tags_fk")
+  user_id users  @relation(fields: [tags_id], references: [user_id], map: "user_tags_fk")
+  name    String
+
+  @@map("rocket_tags")
+}

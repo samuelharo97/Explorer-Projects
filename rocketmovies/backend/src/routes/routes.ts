@@ -10,7 +10,8 @@ const movie = new Movie();
 router.post('/register', user.create);
 router.get('/user', user.findAll);
 router.get('/user/:id', user.findOne);
-router.delete('/user/:id', user.delete);
+router.delete('/user/:id', user.destroy);
 router.post('/movie/:id', movie.create);
+router.delete('/movie/:id', movie.destroy);
 
 export default router;

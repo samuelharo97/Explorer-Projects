@@ -45,7 +45,7 @@ export class User {
     }
   }
 
-  async delete(request: Request, response: Response): Promise<Response> {
+  async destroy(request: Request, response: Response): Promise<Response> {
     try {
       const userService = new UserService();
 
@@ -53,7 +53,7 @@ export class User {
 
       return response
         .status(200)
-        .json({ message: 'deleted count: 1', success: true });
+        .json({ message: 'user deleted', deletedCount: 1, success: true });
     } catch (error) {
       return response
         .status(500)

@@ -20,4 +20,14 @@ export class MovieService {
 
     return movie;
   }
+
+  async destroy(movieId: string) {
+    try {
+      await prisma.movie.delete({ where: { id_movie: movieId } });
+
+      return;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

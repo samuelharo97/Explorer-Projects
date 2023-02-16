@@ -15,4 +15,20 @@ export class Movie {
         .json({ message: 'Internal Server Error', status: 500 });
     }
   }
+
+  async destroy(request: Request, response: Response): Promise<Response> {
+    try {
+      const movieService = new MovieService();
+
+      await movieService.destroy(request.params.id);
+
+      return response
+        .status(200)
+        .json({ message: 'movie deleted', success: true, deletedCount: 1 });
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: 'Internal Server Error', status: 500 });
+    }
+  }
 }

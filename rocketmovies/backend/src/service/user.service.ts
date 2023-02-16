@@ -19,11 +19,16 @@ export class UserService {
         salt
       }
     });
-
     delete user.password;
     delete user.salt;
 
     return user;
+  }
+
+  public async findAll() {
+    const users = prisma.user.findMany();
+
+    return users;
   }
 
   public async destroy(userId: string): Promise<UserEntity> {

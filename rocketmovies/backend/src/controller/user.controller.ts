@@ -16,6 +16,20 @@ export class User {
     }
   }
 
+  async findAll(request: Request, response: Response): Promise<Response> {
+    try {
+      const userService = new UserService();
+
+      const users = await userService.findAll();
+
+      return response.status(200).json(users);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: 'Internal Server Error', status: 500 });
+    }
+  }
+
   async delete(request: Request, response: Response): Promise<Response> {
     try {
       const userService = new UserService();

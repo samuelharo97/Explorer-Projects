@@ -25,6 +25,33 @@ export class UserService {
     return user;
   }
 
+  public async findOne(id: string): Promise<any> {
+    const user = await prisma.user.findUnique({
+      where: { id_user: id },
+      select: {
+        id_user: true,
+        name: true,
+        avatar: true,
+        email: true,
+        movie: {
+          select: {
+            title: true,
+            description: true,
+            rating: true,
+            id_movie: true,
+            tags: true
+          }
+        }
+      }
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return user;
+  }
+
   public async findAll() {
     const users = prisma.user.findMany();
 

@@ -17,8 +17,8 @@ model User {
   avatar    String    @db.VarChar
   password  String    @db.VarChar
   salt      String    @db.VarChar
-  movie     Movie[]
-  tag       Tag[]
+  movie     Movie[]  
+  tag       Tag[]   
 
   @@map("rm_user")
 }
@@ -29,10 +29,10 @@ model Movie {
   description String
   rating      Int
   user        String
-  user_id     User     @relation(fields: [user], references: [id_user])
+  user_id     User     @relation(fields: [user], references: [id_user], onDelete: Cascade)
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updatedAt   DateTime @default(now()) @db.Timestamp(6)
-  tags        Tag[]
+  tags        Tag[]    
 
   @@map("rm_movie")
 }
@@ -41,8 +41,8 @@ model Tag {
   id_tags String @id @default(uuid())
   movie   String
   user    String
-  note_id Movie  @relation(fields: [movie], references: [id_movie])
-  user_id User   @relation(fields: [user], references: [id_user])
+  note_id Movie  @relation(fields: [movie], references: [id_movie], onDelete: Cascade)
+  user_id User   @relation(fields: [user], references: [id_user], onDelete: Cascade)
   name    String
 
   @@map("rm_tag")

@@ -1,4 +1,5 @@
 import { LandingLogo, InputText, Button, LinkText } from '@components';
+import { api } from '@service';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock, AiOutlineUser, AiOutlineArrowLeft } from 'react-icons/ai';
@@ -25,7 +26,13 @@ export const SignUp = () => {
   }, []);
 
   const onSubmit = (data: any) => {
+    data.avatar = 'https://connectlab.netlify.app/profile.png';
     console.log(data);
+    try {
+      api.post('/register', data).then((res) => console.log(res));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

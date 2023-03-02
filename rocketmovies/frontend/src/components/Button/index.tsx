@@ -3,11 +3,19 @@ interface Props {
   text: string;
   color?: string;
   width?: string;
+  buttonType?: 'button' | 'submit' | 'reset' | undefined;
 }
 
-export const Button: React.FC<Props> = ({ onClick, text, color, width = '80' }) => {
+export const Button: React.FC<Props> = ({
+  onClick,
+  text,
+  color,
+  width = '80',
+  buttonType = 'button',
+}) => {
   return (
     <button
+      type={buttonType}
       className={`text-white font-bold h-14 p-2 rounded-lg shadow-md outline-none w-${width} m-3 ${color}`}
       onClick={onClick}
     >

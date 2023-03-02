@@ -2,9 +2,11 @@ import { IconType } from 'react-icons';
 
 interface Props {
   placeholder?: string;
-  dValue?: string | undefined;
+  dValue?: string | undefined; // default value
   inputType?: string;
   icon: IconType;
+  inputName?: string;
+  func?: any;
 }
 
 export const InputText: React.FC<Props> = ({
@@ -12,6 +14,8 @@ export const InputText: React.FC<Props> = ({
   icon: Icon,
   inputType = 'text',
   dValue = undefined,
+  inputName,
+  func,
 }) => {
   return (
     <div className="relative m-3">
@@ -20,6 +24,8 @@ export const InputText: React.FC<Props> = ({
         placeholder={placeholder}
         defaultValue={dValue}
         type={inputType}
+        name={inputName}
+        onChange={func}
       />
       <span className="absolute inset-y-0 left-0 flex items-center px-3">
         <svg

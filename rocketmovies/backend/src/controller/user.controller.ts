@@ -45,6 +45,25 @@ export class User {
     }
   }
 
+  async login(request: Request, response: Response): Promise<Response> {
+    const userService = new UserService();
+    try {
+      const authorization = await userService.login(request.body);
+      return response
+        .status(200)
+        .json({
+          success: authorization,
+          message: 'User credentials are valid'
+        });
+    } catch (error) {
+      return response.status(401).json({
+        message: 'Unauthorized',
+        reason: "Credentials don't match",
+        status: 401
+      });
+    }
+  }
+
   async destroy(request: Request, response: Response): Promise<Response> {
     try {
       const userService = new UserService();

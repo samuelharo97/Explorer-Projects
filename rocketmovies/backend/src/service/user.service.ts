@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { prisma } from '../database/prismaClient';
-import { UserEntity } from '../types/user.entity';
+import { Credentials, UserEntity } from '../types/user.entity';
 
 export class UserService {
   public async createUser(body: UserEntity): Promise<UserEntity> {
@@ -56,6 +56,35 @@ export class UserService {
     const users = prisma.user.findMany();
 
     return users;
+  }
+
+  public async login(credentials: Credentials) {
+    const { password, email } = credentials;
+
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { email: email }
+    });
+
+    const isValid = await this.checkPassword(password, user);
+
+    if (!isValid) {
+      throw new Error(`Credentials don't match`);
+    }
+
+    return isValid;
+  }
+
+  private async checkPassword(
+    password: string,
+    user: UserEntity
+  ): Promise<boolean> {
+    try {
+      const hash = await bcrypt.hash(password, user.salt);
+      console.log(hash === user.password);
+      return hash === user.password;
+    } catch (error) {
+      throw error;
+    }
   }
 
   public async destroy(userId: string): Promise<UserEntity> {

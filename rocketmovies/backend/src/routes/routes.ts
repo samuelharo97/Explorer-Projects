@@ -8,6 +8,7 @@ const user = new User();
 const movie = new Movie();
 
 router.post('/register', user.create);
+router.post('/login', user.login);
 router.get('/user', user.findAll);
 router.get('/user/:id', user.findOne);
 router.delete('/user/:id', user.destroy);

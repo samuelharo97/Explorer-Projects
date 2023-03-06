@@ -71,7 +71,13 @@ export class UserService {
       throw new Error(`Credentials don't match`);
     }
 
-    return isValid;
+    delete user.password;
+    delete user.salt;
+    delete user.updatedAt;
+    delete user.createdAt;
+    delete user.deletedAt;
+
+    return user;
   }
 
   private async checkPassword(

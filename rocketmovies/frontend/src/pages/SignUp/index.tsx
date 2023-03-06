@@ -3,6 +3,7 @@ import { api } from '@service';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock, AiOutlineUser, AiOutlineArrowLeft } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 type FormData = {
   name: string;
@@ -11,6 +12,7 @@ type FormData = {
 };
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,9 +31,14 @@ export const SignUp = () => {
     data.avatar = 'https://connectlab.netlify.app/profile.png';
     console.log(data);
     try {
-      api.post('/register', data).then((res) => console.log(res));
+      api.post('/register', data).then((res) => {
+        alert('Account created successfully');
+        console.log(res);
+        navigate('/');
+      });
     } catch (error) {
       console.log(error);
+      alert('Failed to create account. Try again.');
     }
   };
 

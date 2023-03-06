@@ -1,17 +1,17 @@
 import { RouterProvider } from 'react-router-dom';
 import './styles/index.css';
 import { AuthRoutes, AppRoutes } from '@router';
-import { useState } from 'react';
-import { AuthContext, AuthContextType } from '@context';
+import { AuthContext, AuthProvider } from '@context';
+import { useContext } from 'react';
 
 function App() {
-  const [auth, setAuth] = useState<AuthContextType>(false);
+  const context = useContext(AuthContext);
 
-  return (
-    <AuthContext.Provider value={[auth, setAuth]}>
-      <RouterProvider router={auth ? AppRoutes : AuthRoutes} />
-    </AuthContext.Provider>
-  );
+  // setInterval(() => {
+  //   console.log(context, 'use effect');
+  // }, 5000);
+
+  return <RouterProvider router={context.auth ? AppRoutes : AuthRoutes} />;
 }
 
 export default App;

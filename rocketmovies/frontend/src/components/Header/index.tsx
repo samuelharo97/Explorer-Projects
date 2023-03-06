@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
-  const [auth, setAuth] = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   return (
     <header
       id="header"
@@ -26,7 +26,7 @@ export const Header = () => {
           <p className="text-sm font-medium mb-3">Samuel Haro</p>
           <div className="text-right">
             <a
-              onClick={() => setAuth(false)}
+              onClick={() => logout()}
               href="#"
               className="block text-xs font-medium text-gray-400 hover:text-rose-300"
             >

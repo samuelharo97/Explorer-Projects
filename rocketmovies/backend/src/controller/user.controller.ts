@@ -48,13 +48,11 @@ export class User {
   async login(request: Request, response: Response): Promise<Response> {
     const userService = new UserService();
     try {
-      const authorization = await userService.login(request.body);
-      return response
-        .status(200)
-        .json({
-          success: authorization,
-          message: 'User credentials are valid'
-        });
+      const user = await userService.login(request.body);
+      return response.status(200).json({
+        user: user,
+        message: 'User credentials are valid'
+      });
     } catch (error) {
       return response.status(401).json({
         message: 'Unauthorized',

@@ -1,4 +1,4 @@
-export interface UserProps {
+export interface UserType {
   user: {
     name: string;
     avatar: string;

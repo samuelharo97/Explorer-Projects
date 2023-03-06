@@ -1,17 +1,13 @@
 import { InputText, Button, LinkText, LandingLogo } from '@components';
 import { AuthContext } from '@context';
 import { api } from '@service';
+import { Credentials } from '@types';
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
-type FormData = {
-  email: string;
-  password: string;
-};
-
 export const SignIn = () => {
-  const [auth, setAuth] = useContext(AuthContext);
+  const { login, auth } = useContext(AuthContext);
 
   const {
     register,
@@ -19,19 +15,17 @@ export const SignIn = () => {
     setValue,
     setError,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<Credentials>();
 
   useEffect(() => {
     register('email', { required: true });
     register('password', { required: true });
   }, []);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Credentials) => {
+    const { email, password } = data;
     console.log(data);
-    api.post('/login', data).then((res) => {
-      console.log(res);
-      setAuth(true);
-    }).catch(error => alert(error.response.data.reason))
+    login(email, password);
   };
   return (
     <div className="flex h-screen items-center self-center">

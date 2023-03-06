@@ -28,17 +28,11 @@ export const SignIn = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    try {
-      api.post('/login', data).then((res) => {
-        console.log(res);
-        setAuth(true);
-      });
-    } catch (error) {
-      alert(error);
-      console.log(error);
-    }
+    api.post('/login', data).then((res) => {
+      console.log(res);
+      setAuth(true);
+    }).catch(error => alert(error.response.data.reason))
   };
-
   return (
     <div className="flex h-screen items-center self-center">
       <section className="md:flex-col md:w-4/12 my-64 mx-auto md:self-center">

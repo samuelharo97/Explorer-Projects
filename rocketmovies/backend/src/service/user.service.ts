@@ -71,11 +71,11 @@ export class UserService {
       throw new Error(`Credentials don't match`);
     }
 
-    delete user.password;
-    delete user.salt;
-    delete user.updatedAt;
-    delete user.createdAt;
-    delete user.deletedAt;
+    delete user.password
+    delete user.salt
+    delete user.updatedAt
+    delete user.createdAt
+    delete user.deletedAt
 
     return user;
   }

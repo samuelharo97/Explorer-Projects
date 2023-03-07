@@ -16,6 +16,20 @@ export class Movie {
     }
   }
 
+  async findAll(request: Request, response: Response): Promise<Response> {
+    try {
+      const movieService = new MovieService();
+
+      const movies = await movieService.findAll(request.params.id);
+
+      return response.status(200).json(movies);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: 'Internal Server Error', status: 500 });
+    }
+  }
+
   async destroy(request: Request, response: Response): Promise<Response> {
     try {
       const movieService = new MovieService();

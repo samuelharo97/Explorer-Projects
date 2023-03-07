@@ -12,6 +12,7 @@ router.post('/login', user.login);
 router.get('/user', user.findAll);
 router.get('/user/:id', user.findOne);
 router.delete('/user/:id', user.destroy);
+router.get('/movie/:userId', movie.findAll);
 router.post('/movie/:id', movie.create);
 router.delete('/movie/:id', movie.destroy);
 

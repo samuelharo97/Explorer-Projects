@@ -21,6 +21,25 @@ export class MovieService {
     return movie;
   }
 
+  async findAll(userId: string) {
+    const movies = await prisma.movie.findMany({
+      where: {
+        user_id: { id_user: userId }
+      },
+      select: {
+        user: true,
+        user_id: true,
+        title: true,
+        description: true,
+        rating: true,
+        id_movie: true,
+        tags: true
+      }
+    });
+
+    return movies;
+  }
+
   async destroy(movieId: string) {
     try {
       await prisma.movie.delete({ where: { id_movie: movieId } });

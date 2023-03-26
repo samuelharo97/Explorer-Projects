@@ -13,17 +13,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(null);
 
   const login = async (email: string, password: string) => {
-    const data = { email, password };
-    await api
-      .post('/login', data)
-      .then((res: any) => {
-        setUser(res.data);
-      })
-      .catch((error: any) => alert(error.response.data.reason));
-
-    await api.get(`/movie/${user?.user.id_user}`).then((res) => setMovies(res.data));
-
-    setAuth(true);
+    try {
+      const { data: user } = await api.post('/login', { email, password });
+      const { data: movies } = await api.get(`/movie/${user.id_user}`);
+      setMovies(movies);
+      setAuth(true);
+    } catch (error) {
+      console.error(error);
+      alert('Error during login process. Please try again.');
+    }
   };
 
   const logout = () => {

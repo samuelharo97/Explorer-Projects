@@ -9,28 +9,33 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [auth, setAuth] = useState(false);
+  const [movies, setMovies] = useState([]);
   const [user, setUser] = useState<UserType | null>(null);
 
-  const login = (email: string, password: string) => {
+  const login = async (email: string, password: string) => {
     const data = { email, password };
-    api
+    await api
       .post('/login', data)
       .then((res: any) => {
         setUser(res.data);
-
-        console.log(auth, 'provider');
       })
-      .then(() => setAuth(true))
       .catch((error: any) => alert(error.response.data.reason));
+
+    await api.get(`/movie/${user?.user.id_user}`).then((res) => setMovies(res.data));
+
+    setAuth(true);
   };
 
   const logout = () => {
     console.log('logging out');
-    // setAuth(false);
+    setAuth(false);
     setUser(null);
+    setMovies([]);
   };
 
   return (
-    <AuthContext.Provider value={{ auth, user, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ auth, user, login, logout, movies }}>
+      {children}
+    </AuthContext.Provider>
   );
 };

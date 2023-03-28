@@ -2,7 +2,11 @@ import { Stars, Tag } from '@components';
 import { MovieProps } from '@types';
 import { useNavigate } from 'react-router-dom';
 
-export const MovieCard: React.FC<MovieProps> = ({ data }) => {
+interface MovieCardProps {
+  data: MovieProps;
+}
+
+export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {

@@ -14,9 +14,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { data: user } = await api.post('/login', { email, password });
-      const { data: movies } = await api.get(`/movie/${user.id_user}`);
-      setMovies(movies);
+      const { data: userData } = await api.post('/login', { email, password });
+      const { data: moviesData } = await api.get(`/movie/${userData.id_user}`);
+      setUser(userData)
+      setMovies(moviesData);
       setAuth(true);
     } catch (error) {
       console.error(error);

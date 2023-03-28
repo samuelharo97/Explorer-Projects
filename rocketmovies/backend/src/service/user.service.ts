@@ -86,7 +86,6 @@ export class UserService {
   ): Promise<boolean> {
     try {
       const hash = await bcrypt.hash(password, user.salt);
-      console.log(hash === user.password);
       return hash === user.password;
     } catch (error) {
       throw error;
